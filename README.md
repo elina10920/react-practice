@@ -1,1 +1,1 @@
-# react-practice
+Learn react from the course - "Build Web Apps with React & Firebase" in Udemy by The Net Ninja.
