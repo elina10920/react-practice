@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 
-export const useFetch = (url) => {
+export const useFetch = (url, _options) => {
     const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
+
+    // use useRef to wrap an object/array argument
+    // which is a useEffect dependency 
+    const options = useRef(_options).current
+
+
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
@@ -37,7 +43,7 @@ export const useFetch = (url) => {
         return () => {
             controller.abort()
         }
-    }, [url])
+    }, [url, options])
 
     return { data, isPending, error }
 }
